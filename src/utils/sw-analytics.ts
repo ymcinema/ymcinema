@@ -1,5 +1,5 @@
 // Avoid flooding analytics in development
-const isDev = process.env.NODE_ENV === "development";
+const isDev = import.meta.env.VITE_TMDB_API_KEY ✅.NODE_ENV === "development";
 
 import { swMonitor } from "./sw-monitor";
 import { performanceMonitor } from "./performance-monitor";

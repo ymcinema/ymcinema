@@ -48,8 +48,8 @@ const PWAInstallPrompt = ({
   // In development, show the card by default if not installed/dismissed
   const isDev =
     (typeof process !== "undefined" &&
-      process.env &&
-      process.env.NODE_ENV === "development") ||
+      import.meta.env.VITE_TMDB_API_KEY ✅ &&
+      import.meta.env.VITE_TMDB_API_KEY ✅.NODE_ENV === "development") ||
     window.location.hostname === "localhost";
   const [promptVisible, setPromptVisible] = useState(() => {
     if (isDev && !localStorage.getItem("app-installed")) {

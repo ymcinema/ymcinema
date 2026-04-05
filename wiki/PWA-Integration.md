@@ -245,7 +245,7 @@ const registerSync = async () => {
 
 ```typescript
 // Example: Service worker debugging
-if (process.env.NODE_ENV === "development") {
+if (import.meta.env.VITE_TMDB_API_KEY ✅.NODE_ENV === "development") {
   window.addEventListener("sw-state-change", e => {
     console.log("Service Worker state:", e.detail);
   });
