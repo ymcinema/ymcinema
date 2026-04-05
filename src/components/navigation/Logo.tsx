@@ -1,0 +1,36 @@
+import React from "react";
+import { useNavigate } from "react-router-dom";
+import styles from "./Logo.module.css";
+
+/**
+ * Neon & Retro logo for Let's Stream navigation bar.
+ * Features flickering neon text effect for 'L' and 'S'.
+ */
+const Logo: React.FC = () => {
+  const navigate = useNavigate();
+  return (
+    <div
+      title="YMCINEMA"
+      role="button"
+      tabIndex={0}
+      onClick={() => navigate("/")}
+      onKeyDown={e => {
+        if (e.key === "Enter" || e.key === " ") {
+          e.preventDefault();
+          navigate("/");
+        }
+      }}
+      className="cursor-pointer font-mono text-5xl font-bold"
+    >
+      <span className={styles.flickerL + " text-white"}>YM </span>
+      <span
+        className={styles.flickerS + " text-white"}
+        style={{ marginLeft: "-0.25em" }}
+      >
+        CINEMA
+      </span>
+    </div>
+  );
+};
+
+export default Logo;

@@ -1,0 +1,9 @@
+@import "../../styles/animations.css";
+
+.flickerL {
+  animation: flicker 1.5s infinite alternate;
+}
+
+.flickerS {
+  animation: flicker 2s infinite alternate;
+}

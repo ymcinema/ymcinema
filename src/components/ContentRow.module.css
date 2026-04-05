@@ -1,0 +1,92 @@
+/* ContentRow CSS Module */
+
+@import "tailwindcss";
+@import "../styles/animations.css";
+
+/* Performance optimizations:
+ * - Specific property transitions (opacity, transform)
+ * - CSS containment on container and media items
+ * - Hardware-accelerated transforms
+ */
+
+.container {
+  @apply mb-8 w-full opacity-0;
+  animation: fade-in-slide 0.6s ease-out forwards;
+  animation-delay: 0.2s;
+  animation-fill-mode: forwards;
+  contain: layout style;
+}
+
+.title {
+  @apply mb-4 text-left text-xl font-bold text-white md:text-2xl;
+}
+
+.scrollContainer {
+  @apply relative;
+}
+
+.scrollContainer:hover .scrollButton {
+  opacity: 1;
+  transform: translateY(-50%) translateX(0);
+}
+
+.scrollButton {
+  @apply absolute top-1/2 z-10 flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full bg-black/70 text-white;
+  transition:
+    opacity 0.3s ease,
+    transform 0.3s ease;
+  contain: layout style paint;
+}
+
+.scrollButtonLeft {
+  @apply left-0;
+}
+
+.scrollButtonRight {
+  @apply right-0;
+}
+
+.scrollButtonVisible {
+  @apply translate-x-0 opacity-100;
+}
+
+.scrollButtonHiddenLeft {
+  @apply -translate-x-4 opacity-0;
+}
+
+.scrollButtonHiddenRight {
+  @apply translate-x-4 opacity-0;
+}
+
+.contentRow {
+  @apply flex gap-4 overflow-x-auto pb-4;
+}
+
+/* Hide scrollbar for webkit browsers */
+.contentRow::-webkit-scrollbar {
+  display: none;
+}
+
+/* Hide scrollbar for Firefox */
+.contentRow {
+  scrollbar-width: none;
+}
+
+.mediaItem {
+  @apply flex-none;
+  opacity: 0;
+  animation: fade-in-slide 0.5s ease-out forwards;
+  contain: layout style paint;
+}
+
+.mediaItemRegular {
+  @apply w-[160px] md:w-[180px];
+}
+
+.mediaItemFeatured {
+  @apply w-[220px];
+}
+
+.loadMoreTrigger {
+  @apply h-4 w-full;
+}
