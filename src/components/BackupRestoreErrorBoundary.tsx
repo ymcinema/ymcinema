@@ -111,7 +111,7 @@ export class BackupRestoreErrorBoundary extends Component<Props, State> {
                   <p className="font-mono text-sm">
                     {this.state.error?.message || "Unknown error occurred"}
                   </p>
-                  {import.meta.env.VITE_TMDB_API_KEY ✅.NODE_ENV === "development" &&
+                  {process.env.NODE_ENV === "development" &&
                     this.state.errorInfo && (
                       <details className="mt-2">
                         <summary className="cursor-pointer text-sm font-medium">

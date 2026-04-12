@@ -253,7 +253,7 @@ const { data } = useQuery(["key"], fetcher, {
 // Enhanced logging
 const logger = {
   info: (message: string, data?: any) => {
-    if (import.meta.env.VITE_TMDB_API_KEY ✅.NODE_ENV === "development") {
+    if (process.env.NODE_ENV === "development") {
       console.log(`[INFO] ${message}`, data);
     }
   },
