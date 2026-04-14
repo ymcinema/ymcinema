@@ -35,6 +35,15 @@ export async function fetchVideoSources(): Promise<VideoSource[]> {
     requiresAuth: false,
   });
   
+  sources.push({
+  name: "Watch Now 4",
+  key: "Watch Now 4",
+  getMovieUrl: (id) =>
+    `https://vidsrc.wtf/api/1/movie/?id=${id}&color=e01621`,
+  getTVUrl: (id, s, e) =>
+    `https://vidsrc.wtf/api/1/tv/?id=${id}&s=${s}&e=${e}&color=e01621`,
+  requiresAuth: false,
+});
 
   return sources;
 }
