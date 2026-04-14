@@ -22,8 +22,8 @@ export async function fetchVideoSources(): Promise<VideoSource[]> {
   sources.push({
     name: "Watch Now 2",
     key: "Watch Now 2",
-    getMovieUrl: (id) => `https://vidsrc.wtf/api/1/movie/?{id}=`,
-    getTVUrl: (id, s, e) => `https://vidsrc.wtf/api/1/tv/?{id}=/${s}/${e}`,
+    getMovieUrl: (id) => `https://api.cinezo.net/movie/${id}?autoplay=true`,
+    getTVUrl: (id, s, e) => `https://api.cinezo.net/tv/${id}/${s}/${e}?autoplay=true`,
     requiresAuth: false,
   });
 
