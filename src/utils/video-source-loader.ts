@@ -20,8 +20,8 @@ export async function fetchVideoSources(): Promise<VideoSource[]> {
   });
 
   sources.push({
-    name: "Watch Now 3",
-    key: "Watch Now 3",
+    name: "Watch Now 2",
+    key: "Watch Now 2",
     getMovieUrl: (id) => `https://embed.cinevo.site/movie/${id}?autoplay=true`,
     getTVUrl: (id, s, e) => `https://embed.cinevo.site/tv/${id}/${s}/${e}?autoplay=true`,
     requiresAuth: false,
