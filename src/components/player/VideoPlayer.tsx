@@ -1,5 +1,5 @@
 import { m } from "framer-motion";
-import { useEffect, useRef, useMemo } from "react";
+import { useRef, useMemo } from "react";
 import { memo, lazy, Suspense } from "react";
 import { LabeledStreamLink } from "@/utils/types";
 
@@ -60,6 +60,7 @@ const VideoPlayerComponent = ({
         title={title}
         className="h-full w-full"
         allowFullScreen
+        sandbox="allow-scripts allow-same-origin allow-presentation"
         allow="autoplay; encrypted-media; picture-in-picture"
         referrerPolicy="no-referrer"
         loading="lazy"
