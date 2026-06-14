@@ -14,24 +14,16 @@ export async function fetchVideoSources(): Promise<VideoSource[]> {
   sources.push({
     name: "Watch Now",
     key: "Watch Now",
-    getMovieUrl: (id) => `https://player.cinezo.live/embed/movie/${id}?autoplay=true`,
-    getTVUrl: (id, s, e) => `https://player.cinezo.live/embed/tv/${id}/${s}/${e}?autoplay=true`,
-    requiresAuth: false,
-  });
-
-  sources.push({
-    name: "Watch Now 2",
-    key: "Watch Now 2",
     getMovieUrl: (id) => `https://www.vidsrc.wtf/2/movie/${id}?autoplay=true`,
     getTVUrl: (id, s, e) => `https://www.vidsrc.wtf/2/tv/${id}/${s}/${e}?autoplay=true`,
     requiresAuth: false,
   });
 
   sources.push({
-    name: "Watch Now 3",
-    key: "Watch Now 3",
-    getMovieUrl: (id) => `https://mapple.uk/watch/movie/${id}?autoplay=true`,
-    getTVUrl: (id, s, e) => `https://mapple.uk/watch/tv/${id}/${s}/${e}?autoplay=true`,
+    name: "Watch Now 2",
+    key: "Watch Now 2",
+    getMovieUrl: (id) => `https://player.cinezo.live/embed/movie/${id}?autoplay=true`,
+    getTVUrl: (id, s, e) => `https://player.cinezo.live/embed/tv/${id}/${s}/${e}?autoplay=true`,
     requiresAuth: false,
   });
 
