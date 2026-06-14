@@ -25,7 +25,6 @@ import {
   getYouTubeOriginals,
   getHBOMax,
   getPeacock,
-  getCrunchyroll,
 } from "@/utils/api";
 
 const SecondaryContent = () => {
@@ -52,7 +51,6 @@ const SecondaryContent = () => {
     youTubeOriginals: Media[];
     hboMax: Media[];
     peacock: Media[];
-    crunchyroll: Media[];
   }>({
     basedOnTrueStories: [],
     actionMovies: [],
@@ -76,7 +74,6 @@ const SecondaryContent = () => {
     youTubeOriginals: [],
     hboMax: [],
     peacock: [],
-    crunchyroll: [],
   });
   const {
     basedOnTrueStories,
@@ -101,7 +98,6 @@ const SecondaryContent = () => {
     youTubeOriginals,
     hboMax,
     peacock,
-    crunchyroll,
   } = content;
 
   const [actionPage, setActionPage] = useState(1);
@@ -405,14 +401,12 @@ const SecondaryContent = () => {
           getYouTubeOriginals(),
           getHBOMax(),
           getPeacock(),
-          getCrunchyroll(),
         ]);
         setContent(prev => ({
           ...prev,
           youTubeOriginals: yt,
           hboMax: hbo,
           peacock: pea,
-          crunchyroll: crun,
         }));
       } catch (error) {
         console.error("Error fetching homepage content:", error);
@@ -551,9 +545,6 @@ const SecondaryContent = () => {
       )}
       {hboMax.length > 0 && <ContentRow title="HBO Max" media={hboMax} />}
       {peacock.length > 0 && <ContentRow title="Peacock" media={peacock} />}
-      {crunchyroll.length > 0 && (
-        <ContentRow title="Crunchyroll" media={crunchyroll} />
-      )}
     </>
   );
 };
