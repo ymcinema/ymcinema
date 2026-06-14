@@ -20,11 +20,6 @@ import {
   getMoviesForKids,
   getHollywoodMovies,
   getBollywoodMovies,
-  getKoreanDramas,
-  getJapaneseAnime,
-  getYouTubeOriginals,
-  getHBOMax,
-  getPeacock,
 } from "@/utils/api";
 
 const SecondaryContent = () => {
@@ -46,11 +41,6 @@ const SecondaryContent = () => {
     moviesForKids: Media[];
     hollywoodMovies: Media[];
     bollywoodMovies: Media[];
-    koreanDramas: Media[];
-    japaneseAnime: Media[];
-    youTubeOriginals: Media[];
-    hboMax: Media[];
-    peacock: Media[];
   }>({
     basedOnTrueStories: [],
     actionMovies: [],
@@ -69,11 +59,6 @@ const SecondaryContent = () => {
     moviesForKids: [],
     hollywoodMovies: [],
     bollywoodMovies: [],
-    koreanDramas: [],
-    japaneseAnime: [],
-    youTubeOriginals: [],
-    hboMax: [],
-    peacock: [],
   });
   const {
     basedOnTrueStories,
@@ -93,11 +78,6 @@ const SecondaryContent = () => {
     moviesForKids,
     hollywoodMovies,
     bollywoodMovies,
-    koreanDramas,
-    japaneseAnime,
-    youTubeOriginals,
-    hboMax,
-    peacock,
   } = content;
 
   const [actionPage, setActionPage] = useState(1);
@@ -386,27 +366,17 @@ const SecondaryContent = () => {
         const [hollywood, bollywood, korean, anime, euro] = await Promise.all([
           getHollywoodMovies(),
           getBollywoodMovies(),
-          getKoreanDramas(),
-          getJapaneseAnime(),
         ]);
         setContent(prev => ({
           ...prev,
           hollywoodMovies: hollywood,
           bollywoodMovies: bollywood,
-          koreanDramas: korean,
-          japaneseAnime: anime,
         }));
 
         const [yt, hbo, pea, crun] = await Promise.all([
-          getYouTubeOriginals(),
-          getHBOMax(),
-          getPeacock(),
         ]);
         setContent(prev => ({
           ...prev,
-          youTubeOriginals: yt,
-          hboMax: hbo,
-          peacock: pea,
         }));
       } catch (error) {
         console.error("Error fetching homepage content:", error);
@@ -532,19 +502,8 @@ const SecondaryContent = () => {
       {hollywoodMovies.length > 0 && (
         <ContentRow title="Hollywood" media={hollywoodMovies} />
       )}
-      {koreanDramas.length > 0 && (
-        <ContentRow title="Korean Dramas" media={koreanDramas} />
-      )}
-      {japaneseAnime.length > 0 && (
-        <ContentRow title="Japanese Anime" media={japaneseAnime} />
-      )}
 
       {/* Platform/Provider Rows */}
-      {youTubeOriginals.length > 0 && (
-        <ContentRow title="YouTube Originals" media={youTubeOriginals} />
-      )}
-      {hboMax.length > 0 && <ContentRow title="HBO Max" media={hboMax} />}
-      {peacock.length > 0 && <ContentRow title="Peacock" media={peacock} />}
     </>
   );
 };
