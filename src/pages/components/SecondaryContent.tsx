@@ -16,7 +16,6 @@ import {
   getDocumentaryMovies,
   getMysteryMovies,
   getFantasyMovies,
-  getBingeWorthySeries,
   getMoviesForKids,
   getHollywoodMovies,
   getBollywoodMovies,
@@ -37,7 +36,6 @@ const SecondaryContent = () => {
     documentaryMovies: Media[];
     mysteryMovies: Media[];
     fantasyMovies: Media[];
-    bingeSeries: Media[];
     moviesForKids: Media[];
     hollywoodMovies: Media[];
     bollywoodMovies: Media[];
@@ -55,11 +53,11 @@ const SecondaryContent = () => {
     documentaryMovies: [],
     mysteryMovies: [],
     fantasyMovies: [],
-    bingeSeries: [],
     moviesForKids: [],
     hollywoodMovies: [],
     bollywoodMovies: [],
   });
+
   const {
     basedOnTrueStories,
     actionMovies,
@@ -74,7 +72,6 @@ const SecondaryContent = () => {
     documentaryMovies,
     mysteryMovies,
     fantasyMovies,
-    bingeSeries,
     moviesForKids,
     hollywoodMovies,
     bollywoodMovies,
@@ -106,7 +103,6 @@ const SecondaryContent = () => {
   const [fantasyPage, setFantasyPage] = useState(1);
   const [isLoadingMoreFantasy, setIsLoadingMoreFantasy] = useState(false);
 
-  // Infinite scroll callbacks and refs for each genre row
   const loadMoreAction = useCallback(async () => {
     if (isLoadingMoreAction) return;
     setIsLoadingMoreAction(true);
@@ -304,95 +300,117 @@ const SecondaryContent = () => {
     loadMoreFantasy,
     isLoadingMoreFantasy
   );
+
   useEffect(() => {
+    let cancelled = false;
+
+    const delay = (ms: number) => new Promise(resolve => setTimeout(resolve, ms));
+
+    const safeSetContent = (
+      updater: (prev: typeof content) => typeof content
+    ) => {
+      if (!cancelled) {
+        setContent(updater);
+      }
+    };
+
     const fetchAllContent = async () => {
       try {
         const trueStories = await getBasedOnTrueStories();
-        setContent(prev => ({ ...prev, basedOnTrueStories: trueStories }));
+        safeSetContent(prev => ({ ...prev, basedOnTrueStories: trueStories }));
 
-        const [
-          action,
-          comedy,
-          drama,
-          thriller,
-          scifi,
-          horror,
-          romance,
-          animation,
-          family,
-          documentary,
-          mystery,
-          fantasy,
-        ] = await Promise.all([
-          getActionMovies(1),
-          getComedyMovies(),
-          getDramaMovies(),
-          getThrillerMovies(),
-          getSciFiMovies(),
-          getHorrorMovies(),
-          getRomanceMovies(),
-          getAnimationMovies(),
-          getFamilyMovies(),
-          getDocumentaryMovies(),
-          getMysteryMovies(),
-          getFantasyMovies(),
-        ]);
-        setContent(prev => ({
-          ...prev,
-          actionMovies: action,
-          comedyMovies: comedy,
-          dramaMovies: drama,
-          thrillerMovies: thriller,
-          sciFiMovies: scifi,
-          horrorMovies: horror,
-          romanceMovies: romance,
-          animationMovies: animation,
-          familyMovies: family,
-          documentaryMovies: documentary,
-          mysteryMovies: mystery,
-          fantasyMovies: fantasy,
-        }));
+        await delay(400);
 
-        const [binge, kids] = await Promise.all([
-          getBingeWorthySeries(),
-          getMoviesForKids(),
-        ]);
-        setContent(prev => ({
-          ...prev,
-          bingeSeries: binge,
-          moviesForKids: kids,
-        }));
+        const action = await getActionMovies(1);
+        safeSetContent(prev => ({ ...prev, actionMovies: action }));
 
-        const [hollywood, bollywood, korean, anime, euro] = await Promise.all([
-          getHollywoodMovies(),
-          getBollywoodMovies(),
-        ]);
-        setContent(prev => ({
-          ...prev,
-          hollywoodMovies: hollywood,
-          bollywoodMovies: bollywood,
-        }));
+        await delay(400);
 
-        const [yt, hbo, pea, crun] = await Promise.all([
-        ]);
-        setContent(prev => ({
-          ...prev,
-        }));
+        const comedy = await getComedyMovies();
+        safeSetContent(prev => ({ ...prev, comedyMovies: comedy }));
+
+        await delay(400);
+
+        const drama = await getDramaMovies();
+        safeSetContent(prev => ({ ...prev, dramaMovies: drama }));
+
+        await delay(400);
+
+        const thriller = await getThrillerMovies();
+        safeSetContent(prev => ({ ...prev, thrillerMovies: thriller }));
+
+        await delay(400);
+
+        const scifi = await getSciFiMovies();
+        safeSetContent(prev => ({ ...prev, sciFiMovies: scifi }));
+
+        await delay(400);
+
+        const horror = await getHorrorMovies();
+        safeSetContent(prev => ({ ...prev, horrorMovies: horror }));
+
+        await delay(400);
+
+        const romance = await getRomanceMovies();
+        safeSetContent(prev => ({ ...prev, romanceMovies: romance }));
+
+        await delay(400);
+
+        const animation = await getAnimationMovies();
+        safeSetContent(prev => ({ ...prev, animationMovies: animation }));
+
+        await delay(400);
+
+        const family = await getFamilyMovies();
+        safeSetContent(prev => ({ ...prev, familyMovies: family }));
+
+        await delay(400);
+
+        const documentary = await getDocumentaryMovies();
+        safeSetContent(prev => ({ ...prev, documentaryMovies: documentary }));
+
+        await delay(400);
+
+        const mystery = await getMysteryMovies();
+        safeSetContent(prev => ({ ...prev, mysteryMovies: mystery }));
+
+        await delay(400);
+
+        const fantasy = await getFantasyMovies();
+        safeSetContent(prev => ({ ...prev, fantasyMovies: fantasy }));
+
+        await delay(400);
+
+        const kids = await getMoviesForKids();
+        safeSetContent(prev => ({ ...prev, moviesForKids: kids }));
+
+        await delay(400);
+
+        const hollywood = await getHollywoodMovies();
+        safeSetContent(prev => ({ ...prev, hollywoodMovies: hollywood }));
+
+        await delay(400);
+
+        const bollywood = await getBollywoodMovies();
+        safeSetContent(prev => ({ ...prev, bollywoodMovies: bollywood }));
       } catch (error) {
         console.error("Error fetching homepage content:", error);
       }
     };
+
     fetchAllContent();
+
+    return () => {
+      cancelled = true;
+    };
   }, []);
 
   return (
     <>
-      {/* Thematic/Curated Rows */}
       {basedOnTrueStories.length > 0 && (
         <ContentRow title="Based on True Stories" media={basedOnTrueStories} />
       )}
 
-      {/* Genre-Based Rows (all with infinite scroll) */}
       {actionMovies.length > 0 && (
         <ContentRow
           title="Action"
@@ -401,6 +419,7 @@ const SecondaryContent = () => {
           isLoadingMore={isLoadingMoreAction}
         />
       )}
+
       {comedyMovies.length > 0 && (
         <ContentRow
           title="Comedy"
@@ -409,6 +428,7 @@ const SecondaryContent = () => {
           isLoadingMore={isLoadingMoreComedy}
         />
       )}
+
       {dramaMovies.length > 0 && (
         <ContentRow
           title="Drama"
@@ -417,6 +437,7 @@ const SecondaryContent = () => {
           isLoadingMore={isLoadingMoreDrama}
         />
       )}
+
       {thrillerMovies.length > 0 && (
         <ContentRow
           title="Thriller"
@@ -425,6 +446,7 @@ const SecondaryContent = () => {
           isLoadingMore={isLoadingMoreThriller}
         />
       )}
+
       {sciFiMovies.length > 0 && (
         <ContentRow
           title="Sci-Fi"
@@ -433,6 +455,7 @@ const SecondaryContent = () => {
           isLoadingMore={isLoadingMoreSciFi}
         />
       )}
+
       {horrorMovies.length > 0 && (
         <ContentRow
           title="Horror"
@@ -441,6 +464,7 @@ const SecondaryContent = () => {
           isLoadingMore={isLoadingMoreHorror}
         />
       )}
+
       {romanceMovies.length > 0 && (
         <ContentRow
           title="Romance"
@@ -449,6 +473,7 @@ const SecondaryContent = () => {
           isLoadingMore={isLoadingMoreRomance}
         />
       )}
+
       {animationMovies.length > 0 && (
         <ContentRow
           title="Animation"
@@ -457,6 +482,7 @@ const SecondaryContent = () => {
           isLoadingMore={isLoadingMoreAnimation}
         />
       )}
+
       {familyMovies.length > 0 && (
         <ContentRow
           title="Family"
@@ -465,6 +491,7 @@ const SecondaryContent = () => {
           isLoadingMore={isLoadingMoreFamily}
         />
       )}
+
       {documentaryMovies.length > 0 && (
         <ContentRow
           title="Documentary"
@@ -473,6 +500,7 @@ const SecondaryContent = () => {
           isLoadingMore={isLoadingMoreDocumentary}
         />
       )}
+
       {mysteryMovies.length > 0 && (
         <ContentRow
           title="Mystery"
@@ -481,6 +509,7 @@ const SecondaryContent = () => {
           isLoadingMore={isLoadingMoreMystery}
         />
       )}
+
       {fantasyMovies.length > 0 && (
         <ContentRow
           title="Fantasy"
@@ -490,17 +519,17 @@ const SecondaryContent = () => {
         />
       )}
 
-      {/* Binge/For Kids */}
       {moviesForKids.length > 0 && (
         <ContentRow title="Movies for Kids" media={moviesForKids} />
       )}
 
-      {/* Regional/Language Rows */}
       {hollywoodMovies.length > 0 && (
         <ContentRow title="Hollywood" media={hollywoodMovies} />
       )}
 
-      {/* Platform/Provider Rows */}
+      {bollywoodMovies.length > 0 && (
+        <ContentRow title="Bollywood" media={bollywoodMovies} />
+      )}
     </>
   );
 };
