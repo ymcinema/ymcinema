@@ -491,9 +491,6 @@ const SecondaryContent = () => {
       )}
 
       {/* Binge/For Kids */}
-      {bingeSeries.length > 0 && (
-        <ContentRow title="Binge-Worthy Series" media={bingeSeries} />
-      )}
       {moviesForKids.length > 0 && (
         <ContentRow title="Movies for Kids" media={moviesForKids} />
       )}
