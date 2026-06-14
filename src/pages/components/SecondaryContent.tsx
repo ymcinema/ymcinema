@@ -22,7 +22,6 @@ import {
   getBollywoodMovies,
   getKoreanDramas,
   getJapaneseAnime,
-  getEuropeanCinema,
   getYouTubeOriginals,
   getHBOMax,
   getPeacock,
@@ -50,7 +49,6 @@ const SecondaryContent = () => {
     bollywoodMovies: Media[];
     koreanDramas: Media[];
     japaneseAnime: Media[];
-    europeanCinema: Media[];
     youTubeOriginals: Media[];
     hboMax: Media[];
     peacock: Media[];
@@ -75,7 +73,6 @@ const SecondaryContent = () => {
     bollywoodMovies: [],
     koreanDramas: [],
     japaneseAnime: [],
-    europeanCinema: [],
     youTubeOriginals: [],
     hboMax: [],
     peacock: [],
@@ -101,7 +98,6 @@ const SecondaryContent = () => {
     bollywoodMovies,
     koreanDramas,
     japaneseAnime,
-    europeanCinema,
     youTubeOriginals,
     hboMax,
     peacock,
@@ -396,7 +392,6 @@ const SecondaryContent = () => {
           getBollywoodMovies(),
           getKoreanDramas(),
           getJapaneseAnime(),
-          getEuropeanCinema(),
         ]);
         setContent(prev => ({
           ...prev,
@@ -404,7 +399,6 @@ const SecondaryContent = () => {
           bollywoodMovies: bollywood,
           koreanDramas: korean,
           japaneseAnime: anime,
-          europeanCinema: euro,
         }));
 
         const [yt, hbo, pea, crun] = await Promise.all([
@@ -549,9 +543,6 @@ const SecondaryContent = () => {
       )}
       {japaneseAnime.length > 0 && (
         <ContentRow title="Japanese Anime" media={japaneseAnime} />
-      )}
-      {europeanCinema.length > 0 && (
-        <ContentRow title="European Cinema" media={europeanCinema} />
       )}
 
       {/* Platform/Provider Rows */}
