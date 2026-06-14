@@ -16,7 +16,6 @@ import {
   getDocumentaryMovies,
   getMysteryMovies,
   getFantasyMovies,
-  getBingeWorthySeries,
   getMoviesForKids,
   getHollywoodMovies,
   getBollywoodMovies,
@@ -37,7 +36,6 @@ const SecondaryContent = () => {
     documentaryMovies: Media[];
     mysteryMovies: Media[];
     fantasyMovies: Media[];
-    bingeSeries: Media[];
     moviesForKids: Media[];
     hollywoodMovies: Media[];
     bollywoodMovies: Media[];
@@ -55,7 +53,6 @@ const SecondaryContent = () => {
     documentaryMovies: [],
     mysteryMovies: [],
     fantasyMovies: [],
-    bingeSeries: [],
     moviesForKids: [],
     hollywoodMovies: [],
     bollywoodMovies: [],
@@ -74,7 +71,6 @@ const SecondaryContent = () => {
     documentaryMovies,
     mysteryMovies,
     fantasyMovies,
-    bingeSeries,
     moviesForKids,
     hollywoodMovies,
     bollywoodMovies,
@@ -354,12 +350,10 @@ const SecondaryContent = () => {
         }));
 
         const [binge, kids] = await Promise.all([
-          getBingeWorthySeries(),
           getMoviesForKids(),
         ]);
         setContent(prev => ({
           ...prev,
-          bingeSeries: binge,
           moviesForKids: kids,
         }));
 
@@ -491,9 +485,6 @@ const SecondaryContent = () => {
       )}
 
       {/* Binge/For Kids */}
-      {bingeSeries.length > 0 && (
-        <ContentRow title="Binge-Worthy Series" media={bingeSeries} />
-      )}
       {moviesForKids.length > 0 && (
         <ContentRow title="Movies for Kids" media={moviesForKids} />
       )}
