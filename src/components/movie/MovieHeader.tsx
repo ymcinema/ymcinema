@@ -47,16 +47,16 @@ const MovieHeader = ({
   const [logoLoaded, setLogoLoaded] = useState(false);
 
   return (
-    <div className="relative h-[70vh] w-full">
+    <div className="relative h-[70vh] w-full overflow-hidden">
       {/* Loading skeleton */}
       {!backdropLoaded && (
-        <div className="image-skeleton absolute inset-0 bg-background" />
+        <div className="image-skeleton absolute inset-0 z-0 bg-background" />
       )}
 
       {/* Back button */}
       <button
         onClick={() => navigate(-1)}
-        className="absolute left-6 top-20 z-10 rounded-full bg-black/30 p-2 text-white transition-colors hover:bg-black/50"
+        className="absolute left-6 top-20 z-30 rounded-full bg-black/30 p-2 text-white transition-colors hover:bg-black/50"
         aria-label="Go back"
       >
         <ArrowLeft className="h-5 w-5" />
@@ -65,18 +65,15 @@ const MovieHeader = ({
       <img
         src={getImageUrl(movie.backdrop_path, backdropSizes.original)}
         alt={movie.title || "Movie backdrop"}
-        className={`h-full w-full object-cover transition-opacity duration-700 ${
+        className={`absolute inset-0 z-0 h-full w-full object-cover transition-opacity duration-700 ${
           backdropLoaded ? "opacity-100" : "opacity-0"
         }`}
         onLoad={() => setBackdropLoaded(true)}
       />
 
-      {/* Gradient overlay */}
-      <div className="details-gradient absolute inset-0" />
-
       {/* Trailer section - only show on desktop */}
       {!isMobile && trailerKey && (
-        <div className="absolute inset-0 bg-black/60">
+        <div className="pointer-events-none absolute inset-0 z-0 bg-black/60">
           <iframe
             className="h-full w-full"
             src={`https://www.youtube.com/embed/${trailerKey}?autoplay=1&mute=1&controls=0&modestbranding=1&loop=1&playlist=${trailerKey}`}
@@ -87,10 +84,13 @@ const MovieHeader = ({
         </div>
       )}
 
+      {/* Gradient overlay */}
+      <div className="details-gradient pointer-events-none absolute inset-0 z-10" />
+
       {/* Movie info overlay */}
-      <div className="absolute bottom-0 left-0 right-0 p-6 md:p-12 lg:p-16">
+      <div className="absolute bottom-0 left-0 right-0 z-20 p-6 md:p-12 lg:p-16">
         <div className="mx-auto flex max-w-6xl flex-col items-start gap-6 md:flex-row">
-          <div className="hidden w-48 flex-shrink-0 overflow-hidden rounded-lg shadow-lg md:block xl:w-64">
+          <div className="relative z-20 hidden w-48 flex-shrink-0 overflow-hidden rounded-lg shadow-lg md:block xl:w-64">
             <img
               src={getImageUrl(movie.poster_path, posterSizes.medium)}
               alt={movie.title || "Movie poster"}
@@ -98,9 +98,9 @@ const MovieHeader = ({
             />
           </div>
 
-          <div className="flex-1 animate-slide-up">
+          <div className="relative z-20 flex-1 animate-slide-up">
             {movie.logo_path ? (
-              <div className="relative mx-auto mb-4 w-full max-w-[300px] transition-all duration-300 ease-in-out hover:scale-105 md:max-w-[400px] lg:max-w-[500px]">
+              <div className="relative mb-4 w-full max-w-[300px] transition-all duration-300 ease-in-out hover:scale-105 md:max-w-[400px] lg:max-w-[500px]">
                 {/* Loading skeleton */}
                 {!logoLoaded && (
                   <div className="image-skeleton absolute inset-0 rounded-lg bg-background" />
@@ -109,7 +109,9 @@ const MovieHeader = ({
                 <img
                   src={getImageUrl(movie.logo_path, backdropSizes.original)}
                   alt={movie.title}
-                  className={`h-auto w-full object-contain drop-shadow-lg filter transition-opacity duration-700 ease-in-out ${logoLoaded ? "opacity-100" : "opacity-0"}`}
+                  className={`h-auto max-h-40 w-full object-contain object-left drop-shadow-lg filter transition-opacity duration-700 ease-in-out ${
+                    logoLoaded ? "opacity-100" : "opacity-0"
+                  }`}
                   onLoad={() => setLogoLoaded(true)}
                 />
               </div>
@@ -189,7 +191,9 @@ const MovieHeader = ({
                 }`}
               >
                 <Heart
-                  className={`mr-2 h-4 w-4 ${isFavorite ? "fill-current" : ""}`}
+                  className={`mr-2 h-4 w-4 ${
+                    isFavorite ? "fill-current" : ""
+                  }`}
                 />
                 {isFavorite ? "In Favorites" : "Add to Favorites"}
               </Button>
@@ -204,7 +208,9 @@ const MovieHeader = ({
                 }`}
               >
                 <Bookmark
-                  className={`mr-2 h-4 w-4 ${isInMyWatchlist ? "fill-current" : ""}`}
+                  className={`mr-2 h-4 w-4 ${
+                    isInMyWatchlist ? "fill-current" : ""
+                  }`}
                 />
                 {isInMyWatchlist ? "In Watchlist" : "Add to Watchlist"}
               </Button>
