@@ -73,7 +73,7 @@ const MovieHeader = ({
 
       {/* Trailer section - only show on desktop */}
       {!isMobile && trailerKey && (
-        <div className="pointer-events-none absolute inset-0 z-0 bg-black/25">
+        <div className="pointer-events-none absolute inset-0 z-0 bg-black/60">
           <iframe
             className="h-full w-full"
             src={`https://www.youtube.com/embed/${trailerKey}?autoplay=1&mute=1&controls=0&modestbranding=1&loop=1&playlist=${trailerKey}`}
@@ -85,7 +85,7 @@ const MovieHeader = ({
       )}
 
       {/* Gradient overlay */}
-      <div className="details-gradient pointer-events-none absolute inset-0 z-10" />
+      <div className="pointer-events-none absolute inset-0 z-10 bg-gradient-to-t from-black via-black/40 to-transparent" />
 
       {/* Movie info overlay */}
       <div className="absolute bottom-0 left-0 right-0 z-20 p-6 md:p-12 lg:p-16">
