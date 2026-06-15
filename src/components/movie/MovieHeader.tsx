@@ -73,7 +73,7 @@ const MovieHeader = ({
 
       {/* Trailer section - only show on desktop */}
       {!isMobile && trailerKey && (
-        <div className="pointer-events-none absolute inset-0 z-0 bg-black/60">
+        <div className="pointer-events-none absolute inset-0 z-0 bg-black/25">
           <iframe
             className="h-full w-full"
             src={`https://www.youtube.com/embed/${trailerKey}?autoplay=1&mute=1&controls=0&modestbranding=1&loop=1&playlist=${trailerKey}`}
