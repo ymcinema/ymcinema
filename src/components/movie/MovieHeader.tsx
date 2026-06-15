@@ -45,6 +45,7 @@ const MovieHeader = ({
   const isMobile = useIsMobile();
   const [backdropLoaded, setBackdropLoaded] = useState(false);
   const [logoLoaded, setLogoLoaded] = useState(false);
+  const [isMuted, setIsMuted] = useState(true);
 
   return (
     <div className="relative h-[70vh] w-full overflow-hidden">
@@ -72,17 +73,29 @@ const MovieHeader = ({
       />
 
       {/* Trailer section - only show on desktop */}
-      {!isMobile && trailerKey && (
-        <div className="pointer-events-none absolute inset-0 z-0 bg-black/25">
-          <iframe
-            className="h-full w-full"
-            src={`https://www.youtube.com/embed/${trailerKey}?autoplay=1&mute=1&controls=0&modestbranding=1&loop=1&playlist=${trailerKey}`}
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-            allowFullScreen
-            title={`Trailer for ${movie?.title || "movie"}`}
-          />
-        </div>
-      )}
+      {/* Trailer section - only show on desktop */}
+{!isMobile && trailerKey && (
+  <>
+    <div className="pointer-events-none absolute inset-0 z-0 bg-black/25">
+      <iframe
+        className="h-full w-full"
+        src={`https://www.youtube.com/embed/${trailerKey}?autoplay=1&mute=${
+          isMuted ? 1 : 0
+        }&controls=0&modestbranding=1&loop=1&playlist=${trailerKey}`}
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+        allowFullScreen
+        title={`Trailer for ${movie?.title || "movie"}`}
+      />
+    </div>
+
+    <button
+      onClick={() => setIsMuted(!isMuted)}
+      className="absolute bottom-6 right-6 z-40 rounded-full bg-black/60 px-4 py-2 text-sm text-white backdrop-blur-sm hover:bg-black/80"
+    >
+      {isMuted ? "🔇 Trailer Muted" : "🔊 Trailer Sound"}
+    </button>
+  </>
+)}
 
       {/* Gradient overlay */}
       <div className="pointer-events-none absolute inset-0 z-10 bg-gradient-to-t from-black via-black/40 to-transparent" />
