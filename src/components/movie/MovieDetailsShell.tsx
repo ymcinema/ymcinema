@@ -1,9 +1,8 @@
 import React from "react";
 import { MovieDetails } from "@/utils/types";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { MovieHeader } from "@/components/movie";
 import { useEffect } from "react";
-// no direct button usage here
 
 type TabTypeExternal = "about" | "cast" | "images" | "reviews" | "downloads";
 
@@ -34,14 +33,14 @@ const MovieDetailsShell: React.FC<MovieDetailsShellProps> = ({
   showDownloads,
   children,
 }) => {
-  // Guard: if downloads tab is not visible, ensure active tab doesn't remain on downloads
   useEffect(() => {
     if (activeTab === "downloads" && !showDownloads) {
       onTabChange("about");
     }
   }, [activeTab, showDownloads, onTabChange]);
+
   return (
-    <>
+    <div className="pt-24 md:pt-20">
       <MovieHeader
         movie={movie}
         trailerKey={trailerKey}
@@ -51,6 +50,7 @@ const MovieDetailsShell: React.FC<MovieDetailsShellProps> = ({
         onToggleWatchlist={onToggleWatchlist}
         onPlayMovie={onPlayMovie}
       />
+
       <div className="mx-auto max-w-6xl px-4 py-8">
         <Tabs
           value={activeTab}
@@ -63,24 +63,28 @@ const MovieDetailsShell: React.FC<MovieDetailsShellProps> = ({
             >
               About
             </TabsTrigger>
+
             <TabsTrigger
               value="cast"
               className="data-[state=active]:border-b-2 data-[state=active]:border-accent data-[state=active]:text-white"
             >
               Cast
             </TabsTrigger>
+
             <TabsTrigger
               value="images"
               className="data-[state=active]:border-b-2 data-[state=active]:border-accent data-[state=active]:text-white"
             >
               Images
             </TabsTrigger>
+
             <TabsTrigger
               value="reviews"
               className="data-[state=active]:border-b-2 data-[state=active]:border-accent data-[state=active]:text-white"
             >
               Reviews
             </TabsTrigger>
+
             {showDownloads && (
               <TabsTrigger
                 value="downloads"
@@ -90,10 +94,11 @@ const MovieDetailsShell: React.FC<MovieDetailsShellProps> = ({
               </TabsTrigger>
             )}
           </TabsList>
+
           {children}
         </Tabs>
       </div>
-    </>
+    </div>
   );
 };
 
