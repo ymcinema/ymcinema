@@ -30,8 +30,8 @@ export async function fetchVideoSources(): Promise<VideoSource[]> {
   sources.push({
     name: "Watch Now 3",
     key: "Watch Now 3",
-    getMovieUrl: (id) => `https://www.vidsrc.wtf/3/movie/${id}?autoplay=true`,
-    getTVUrl: (id, s, e) => `https://www.vidsrc.wtf/3/tv/${id}/${s}/${e}?autoplay=true`,
+    getMovieUrl: (id) => `https://www.vidsrc.wtf/2/movie/${id}?autoplay=true`,
+    getTVUrl: (id, s, e) => `https://www.vidsrc.wtf/2/tv/${id}/${s}/${e}?autoplay=true`,
     requiresAuth: false,
   });
 
