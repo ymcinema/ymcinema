@@ -27,5 +27,15 @@ export async function fetchVideoSources(): Promise<VideoSource[]> {
     requiresAuth: false,
   });
 
+  sources.push({
+  name: "ScreenFetch",
+  key: "ScreenFetch",
+  getMovieUrl: (id) =>
+    `https://screenfetch4.cyou/embed/movie?tmdb=${id}`,
+  getTVUrl: (id, s, e) =>
+    `https://screenfetch4.cyou/embed/tv?tmdb=${id}&season=${s}&episode=${e}`,
+  requiresAuth: false,
+});
+
   return sources;
 }
