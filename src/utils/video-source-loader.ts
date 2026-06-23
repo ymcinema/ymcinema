@@ -20,16 +20,24 @@ export async function fetchVideoSources(): Promise<VideoSource[]> {
   });
 
   sources.push({
-    name: "Watch Now 1",
-    key: "Watch Now 1",
+    name: "Watch Now 2",
+    key: "Watch Now 2",
     getMovieUrl: (id) => `https://www.vidsrc.wtf/2/movie/${id}?autoplay=true`,
     getTVUrl: (id, s, e) => `https://www.vidsrc.wtf/2/tv/${id}/${s}/${e}?autoplay=true`,
     requiresAuth: false,
   });
 
+    sources.push({
+    name: "filmuin",
+    key: "filmuin",
+    getMovieUrl: (id) => `https://embed.filmu.in/movie/${id}?autoplay=true`,
+    getTVUrl: (id, s, e) => `https://embed.filmu.in/tv/${id}/${s}/${e}?autoplay=true`,
+    requiresAuth: false,
+  });
+
   sources.push({
-  name: "AnyEmbed",
-  key: "AnyEmbed",
+  name: "Watch Now 3",
+  key: "Watch Now 3",
   getMovieUrl: (id) => `https://anyembed.xyz/embed/tmdb-movie-${id}?logo=false`,
   getTVUrl: (id, s, e) => `https://anyembed.xyz/embed/tmdb-tv-${id}/${s}/${e}?logo=false`,
   requiresAuth: false,
