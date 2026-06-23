@@ -30,8 +30,8 @@ export async function fetchVideoSources(): Promise<VideoSource[]> {
   sources.push({
   name: "AnyEmbed",
   key: "AnyEmbed",
-  getMovieUrl: (id) => `https://anyembed.xyz/embed/tmdb-movie-${id}`,
-  getTVUrl: (id, s, e) => `https://anyembed.xyz/embed/tmdb-tv-${id}/${s}/${e}`,
+  getMovieUrl: (id) => `https://anyembed.xyz/embed/tmdb-movie-${id}?logo=false`,
+  getTVUrl: (id, s, e) => `https://anyembed.xyz/embed/tmdb-tv-${id}/${s}/${e}?logo=false`,
   requiresAuth: false,
 });
 
