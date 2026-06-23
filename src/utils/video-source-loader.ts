@@ -28,12 +28,12 @@ export async function fetchVideoSources(): Promise<VideoSource[]> {
   });
 
   sources.push({
-  name: "ScreenFetch",
-  key: "ScreenFetch",
+  name: "VidSrcMe",
+  key: "VidSrcMe",
   getMovieUrl: (id) =>
-    `https://screenfetch4.cyou/embed/movie?tmdb=${id}`,
+    `https://vidsrcme.ru/embed/movie?tmdb=${id}&autoplay=1`,
   getTVUrl: (id, s, e) =>
-    `https://screenfetch4.cyou/embed/tv?tmdb=${id}&season=${s}&episode=${e}`,
+    `https://vidsrcme.ru/embed/tv?tmdb=${id}&season=${s}&episode=${e}`,
   requiresAuth: false,
 });
 
