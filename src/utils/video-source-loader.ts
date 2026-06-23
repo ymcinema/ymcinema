@@ -31,9 +31,9 @@ export async function fetchVideoSources(): Promise<VideoSource[]> {
   name: "VidSrcMe",
   key: "VidSrcMe",
   getMovieUrl: (id) =>
-    `https://vidsrcme.ru/embed/movie?tmdb=${id}&autoplay=1`,
+    `https://vidsrc-embed.ru/embed/movie?tmdb=${id}&autoplay=1`,
   getTVUrl: (id, s, e) =>
-    `https://vidsrcme.ru/embed/tv?tmdb=${id}&season=${s}&episode=${e}`,
+    `https://vidsrc-embed.ru/embed/tv?tmdb=${id}&season=${s}&episode=${e}`,
   requiresAuth: false,
 });
 
