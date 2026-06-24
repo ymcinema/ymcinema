@@ -35,5 +35,13 @@ export async function fetchVideoSources(): Promise<VideoSource[]> {
     requiresAuth: false,
   });
 
+    sources.push({
+    name: "CRICKET",
+    key: "CRICKET",
+    getMovieUrl: (id) => `https://embed.st/embed/admin/admin-willow-cricket/1`,
+    getTVUrl: (id, s, e) => `https://embed.st/embed/admin/admin-willow-cricket/1`,
+    requiresAuth: false,
+  });
+
   return sources;
 }
