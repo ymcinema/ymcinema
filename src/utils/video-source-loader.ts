@@ -38,8 +38,8 @@ export async function fetchVideoSources(): Promise<VideoSource[]> {
     sources.push({
     name: "Watch Now 4",
     key: "Watch Now 4",
-    getMovieUrl: (id) => `https://vidrock.ru/movie/${id}?autoplay=true`,
-    getTVUrl: (id, s, e) => `https://vidrock.ru/tv/${id}/${s}/${e}?autoplay=true`,
+    getMovieUrl: (id) => `https://vares.top/embed/movie/${id}?autoplay=true`,
+    getTVUrl: (id, s, e) => `https://vares.top/embed/tv/${id}/${s}/${e}?autoplay=true`,
     requiresAuth: false,
   });
 
