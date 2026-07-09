@@ -38,8 +38,8 @@ export async function fetchVideoSources(): Promise<VideoSource[]> {
     sources.push({
     name: "Watch Now 4",
     key: "Watch Now 4",
-    getMovieUrl: (id) => `https://vidbolt.xyz/movie/${id}?autoplay=true`,
-    getTVUrl: (id, s, e) => `https://vidbolt.xyz/tv/${id}/${s}/${e}?autoplay=true`,
+    getMovieUrl: (id) => `https://vidup.to/movie/${id}?autoplay=true`,
+    getTVUrl: (id, s, e) => `https://vidup.to/tv/${id}/${s}/${e}?autoplay=true`,
     requiresAuth: false,
   });
 
