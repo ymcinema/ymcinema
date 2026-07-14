@@ -38,8 +38,8 @@ export async function fetchVideoSources(): Promise<VideoSource[]> {
     sources.push({
     name: "Watch Now 4",
     key: "Watch Now 4",
-    getMovieUrl: (id) => `https://v1.zxcstream.xyz/player/movie/${id}?autoplay=true`,
-    getTVUrl: (id, s, e) => `https://v1.zxcstream.xyz/player/tv/${id}/${s}/${e}?autoplay=true`,
+    getMovieUrl: (id) => `https://vidcore.net/movie/${id}?autoplay=true`,
+    getTVUrl: (id, s, e) => `https://vidcore.net/tv/${id}/${s}/${e}?autoplay=true`,
     requiresAuth: false,
   });
 
