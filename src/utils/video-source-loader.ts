@@ -38,8 +38,8 @@ export async function fetchVideoSources(): Promise<VideoSource[]> {
     sources.push({
     name: "Watch Now 4",
     key: "Watch Now 4",
-    getMovieUrl: (id) => `https://vaplayer.ru/embed/movie/${id}?autoplay=true`,
-    getTVUrl: (id, s, e) => `https://vaplayer.ru/embed/tv/${id}/${s}/${e}?autoplay=true`,
+    getMovieUrl: (id) => `https://airflix1.com/embed/movie/${id}?autoplay=true`,
+    getTVUrl: (id, s, e) => `https://airflix1.com/embed/tv/${id}/${s}/${e}?autoplay=true`,
     requiresAuth: false,
   });
 
