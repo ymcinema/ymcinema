@@ -22,8 +22,8 @@ export async function fetchVideoSources(): Promise<VideoSource[]> {
       sources.push({
     name: "Watch Now 2",
     key: "Watch Now 2",
-    getMovieUrl: (id) => `https://pvrplay.online/watch/movie/${id}?autoplay=true`,
-    getTVUrl: (id, s, e) => `https://pvrplay.online/watch/tv/${id}/${s}/${e}?autoplay=true`,
+    getMovieUrl: (id) => `https://embed.reelsdownload.online/player${id}?key=k_5661ac637169a1733857dc50`,
+    getTVUrl: (id, s, e) => `https://embed.reelsdownload.online/player/${id}/${s}/${e}?key=k_5661ac637169a1733857dc50`,
     requiresAuth: false,
   });
 
