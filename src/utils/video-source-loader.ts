@@ -19,19 +19,11 @@ export async function fetchVideoSources(): Promise<VideoSource[]> {
     requiresAuth: false,
   });
 
-      sources.push({
+     sources.push({
     name: "Watch Now 2",
     key: "Watch Now 2",
     getMovieUrl: (id) => `https://pvrplay.online/watch/movie/${id}?autoplay=true`,
     getTVUrl: (id, s, e) => `https://pvrplay.online/watch/tv/${id}/${s}/${e}?autoplay=true`,
-    requiresAuth: false,
-  });
-
-      sources.push({
-    name: "Watch Now 3",
-    key: "Watch Now 3",
-    getMovieUrl: (id) => `https://vidfast.vc/movie/${id}?autoplay=true`,
-    getTVUrl: (id, s, e) => `https://vidfast.vc/tv/${id}/${s}/${e}?autoplay=true`,
     requiresAuth: false,
   });
 
