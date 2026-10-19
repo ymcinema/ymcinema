@@ -22,8 +22,8 @@ export async function fetchVideoSources(): Promise<VideoSource[]> {
       sources.push({
     name: "Watch Now 2",
     key: "Watch Now 2",
-    getMovieUrl: (id) => `https://vidstuck.cc/embed/movie/${id}?autoplay=true`,
-    getTVUrl: (id, s, e) => `https://vidstuck.cc/embed/tv/${id}/${s}/${e}?autoplay=true`,
+    getMovieUrl: (id) => `https://zxcstream.cc/player/movie/${id}?autoplay=true`,
+    getTVUrl: (id, s, e) => `https://zxcstream.cc/player/tv/${id}/${s}/${e}?autoplay=true`,
     requiresAuth: false,
   });
 
