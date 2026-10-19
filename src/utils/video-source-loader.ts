@@ -14,12 +14,12 @@ export async function fetchVideoSources(): Promise<VideoSource[]> {
   sources.push({
     name: "Watch Now 1",
     key: "Watch Now 1",
-    getMovieUrl: (id) => `https://cinemaos.tech/movie/watch/${id}?autoplay=true&server=Titan`,
+    getMovieUrl: (id) => `https://cinemaos.tech/movie/watch/${id}?autoplay=true`,
     getTVUrl: (id, s, e) => `https://cinemaos.tech/tv/watch/${id}?season=${s}&episode=${e}?autoplay=true&embed=true`,
     requiresAuth: false,
   });
 
-     sources.push({
+      sources.push({
     name: "Watch Now 2",
     key: "Watch Now 2",
     getMovieUrl: (id) => `https://pvrplay.online/watch/movie/${id}?autoplay=true`,
