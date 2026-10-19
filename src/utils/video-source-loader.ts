@@ -15,15 +15,15 @@ export async function fetchVideoSources(): Promise<VideoSource[]> {
     name: "Watch Now 1",
     key: "Watch Now 1",
     getMovieUrl: (id) => `https://player.cinezo.live/embed/movie/${id}?autoplay=true`,
-    getTVUrl: (id, s, e) => `https://player.cinezo.live/embed/tv/${id}?season=${s}&episode=${e}?autoplay=true`,
+    getTVUrl: (id, s, e) => `https://player.cinezo.live/embed/tv/${id}/${s}/${e}?autoplay=true`,
     requiresAuth: false,
   });
 
       sources.push({
     name: "Watch Now 2",
     key: "Watch Now 2",
-    getMovieUrl: (id) => `https://pvrplay.online/watch/movie/${id}?autoplay=true`,
-    getTVUrl: (id, s, e) => `https://pvrplay.online/watch/tv/${id}/${s}/${e}?autoplay=true`,
+    getMovieUrl: (id) => `https://embed.vidrift.net/embed/movie/${id}?autoplay=true`,
+    getTVUrl: (id, s, e) => `https://embed.vidrift.net/embed/tv/${id}/${s}/${e}?autoplay=true`,
     requiresAuth: false,
   });
 
