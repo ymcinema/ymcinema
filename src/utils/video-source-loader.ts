@@ -22,8 +22,8 @@ export async function fetchVideoSources(): Promise<VideoSource[]> {
       sources.push({
     name: "Watch Now 2",
     key: "Watch Now 2",
-    getMovieUrl: (id) => `https://vidbolt.xyz/movie/${id}?autoplay=true`,
-    getTVUrl: (id, s, e) => `https://vidbolt.xyz/tv/${id}/${s}/${e}?autoplay=true`,
+    getMovieUrl: (id) => `https://vidfast.vc/movie/${id}?autoplay=true`,
+    getTVUrl: (id, s, e) => `https://vidfast.vc/tv/${id}/${s}/${e}?autoplay=true`,
     requiresAuth: false,
   });
 
