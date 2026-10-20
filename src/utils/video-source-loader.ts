@@ -14,9 +14,9 @@ export async function fetchVideoSources(): Promise<VideoSource[]> {
       name: "Watch Now 1",
       key: "Watch Now 1",
       getMovieUrl: (id) =>
-        `https://vidstuck.cc/embed/movie/${id}`,
+        `https://embed.vidrift.net/embed/movie/${id}`,
       getTVUrl: (id, s, e) =>
-        `https://vidstuck.cc/embed/tv/${id}/${s}/${e}`,
+        `https://embed.vidrift.net/embed/tv/${id}/${s}/${e}`,
       requiresAuth: false,
     },
     {
@@ -26,15 +26,6 @@ export async function fetchVideoSources(): Promise<VideoSource[]> {
         `https://player.cinezo.live/embed/movie/${id}?autoplay=true`,
       getTVUrl: (id, s, e) =>
         `https://player.cinezo.live/embed/tv/${id}/${s}/${e}?autoplay=true`,
-      requiresAuth: false,
-    },
-    {
-      name: "Watch Now 3",
-      key: "Watch Now 3",
-      getMovieUrl: (id) =>
-        `https://embed.vidrift.net/embed/movie/${id}`,
-      getTVUrl: (id, s, e) =>
-        `https://embed.vidrift.net/embed/tv/${id}/${s}/${e}`,
       requiresAuth: false,
     },
   ];

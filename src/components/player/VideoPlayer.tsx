@@ -44,17 +44,15 @@ const VideoPlayerComponent = ({
       onLoaded();
     };
 
-    // Sandbox ON for Cinezo.
-    // Sandbox OFF for Vidstuck and Vidrift.
+    // Vidrift: sandbox OFF.
+    // Cinezo: sandbox ON.
+    // Unknown providers: sandbox ON by default.
     let useSandbox = true;
 
     try {
       const hostname = new URL(iframeUrl).hostname.toLowerCase();
 
-      if (
-        hostname === "vidstuck.cc" ||
-        hostname === "embed.vidrift.net"
-      ) {
+      if (hostname === "embed.vidrift.net") {
         useSandbox = false;
       }
     } catch {
