@@ -1,18 +1,11 @@
+
 import { m } from "framer-motion";
-import { useRef, useMemo } from "react";
-import { memo, lazy, Suspense } from "react";
+import { useRef, useMemo, memo, lazy, Suspense } from "react";
 import { LabeledStreamLink } from "@/utils/types";
 
 const EMPTY_STREAM_LINKS: LabeledStreamLink[] = [];
 
 const VideoJsPlayer = lazy(() => import("./VideoJsPlayer"));
-
-/**
- * Z-INDEX STRATEGY:
- * - No explicit z-index - relies on natural document flow
- * - Parent container controls positioning within flex layout
- * - Loading overlay uses natural stacking within component
- */
 
 interface VideoPlayerProps {
   isLoading: boolean;
@@ -21,7 +14,6 @@ interface VideoPlayerProps {
   poster?: string;
   onLoaded: () => void;
   onError: (error: string) => void;
-  // API source props (for Video.js player)
   isApiSource?: boolean;
   streamLinks?: LabeledStreamLink[];
   apiLoading?: boolean;
@@ -52,6 +44,23 @@ const VideoPlayerComponent = ({
       onLoaded();
     };
 
+    // Sandbox ON for Cinezo.
+    // Sandbox OFF for Vidstuck and Vidrift.
+    let useSandbox = true;
+
+    try {
+      const hostname = new URL(iframeUrl).hostname.toLowerCase();
+
+      if (
+        hostname === "vidstuck.cc" ||
+        hostname === "embed.vidrift.net"
+      ) {
+        useSandbox = false;
+      }
+    } catch {
+      useSandbox = true;
+    }
+
     return (
       <iframe
         key={iframeUrl}
@@ -60,7 +69,12 @@ const VideoPlayerComponent = ({
         title={title}
         className="h-full w-full"
         allowFullScreen
-        sandbox="allow-scripts allow-same-origin allow-presentation"
+        {...(useSandbox
+          ? {
+              sandbox:
+                "allow-scripts allow-same-origin allow-presentation",
+            }
+          : {})}
         allow="autoplay; encrypted-media; picture-in-picture"
         referrerPolicy="no-referrer"
         loading="lazy"
@@ -70,7 +84,7 @@ const VideoPlayerComponent = ({
     );
   }, [iframeUrl, onError, onLoaded, title]);
 
-  // Render Video.js player for API sources
+  // Video.js player for API sources
   if (isApiSource) {
     return (
       <div className="relative aspect-video overflow-hidden rounded-lg shadow-2xl">
@@ -95,7 +109,7 @@ const VideoPlayerComponent = ({
     );
   }
 
-  // Default: render iframe player (existing behavior, unchanged)
+  // Standard iframe player
   return (
     <div className="relative aspect-video overflow-hidden rounded-lg shadow-2xl">
       {isLoading ? (
@@ -108,6 +122,7 @@ const VideoPlayerComponent = ({
           <div className="h-16 w-16 animate-spin rounded-full border-4 border-white/30 border-t-white" />
         </m.div>
       ) : null}
+
       <m.div
         initial={{ opacity: 0, scale: 0.95 }}
         animate={{ opacity: 1, scale: 1 }}
