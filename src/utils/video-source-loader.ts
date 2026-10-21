@@ -28,5 +28,14 @@ export async function fetchVideoSources(): Promise<VideoSource[]> {
         `https://player.cinezo.live/embed/tv/${id}/${s}/${e}?autoplay=true`,
       requiresAuth: false,
     },
+    {
+      name: "Watch Now 3",
+      key: "Watch Now 3",
+      getMovieUrl: (id) =>
+        `https://nxsha.space/embed/movie/${id}`,
+      getTVUrl: (id, s, e) =>
+        `https://nxsha.space/embed/tv/${id}/${s}/${e}`,
+      requiresAuth: false,
+    },
   ];
 }

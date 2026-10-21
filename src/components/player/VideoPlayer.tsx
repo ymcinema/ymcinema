@@ -46,7 +46,7 @@ const VideoPlayerComponent = ({
 
     // Vidrift: sandbox OFF.
     // Cinezo: sandbox ON.
-    // Unknown providers: sandbox ON by default.
+    // NXsha and all other providers: sandbox ON by default.
     let useSandbox = true;
 
     try {
