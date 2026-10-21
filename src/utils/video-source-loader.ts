@@ -32,9 +32,9 @@ export async function fetchVideoSources(): Promise<VideoSource[]> {
       name: "Watch Now 3",
       key: "Watch Now 3",
       getMovieUrl: (id) =>
-        `https://nxsha.space/embed/movie/${id}`,
+        `https://nxsha.space/embed/movie/${id}?autoplay=true`,
       getTVUrl: (id, s, e) =>
-        `https://nxsha.space/embed/tv/${id}/${s}/${e}`,
+        `https://nxsha.space/embed/tv/${id}/${s}/${e}?autoplay=true`,
       requiresAuth: false,
     },
   ];
