@@ -45,20 +45,13 @@ const VideoPlayerComponent = ({
     };
 
     // Vidrift: sandbox OFF.
-    // Cinezo: sandbox ON.
-    // NXsha: sandbox ON.
-    // Vidcore: sandbox OFF.
-    // Unknown providers: sandbox ON by default.
+    // Cinezo, NXsha, Vidcore, and other providers: sandbox ON.
     let useSandbox = true;
 
     try {
       const hostname = new URL(iframeUrl).hostname.toLowerCase();
 
-      if (
-        hostname === "embed.vidrift.net" ||
-        hostname === "vidcore.io" ||
-        hostname.endsWith(".vidcore.io")
-      ) {
+      if (hostname === "embed.vidrift.net") {
         useSandbox = false;
       }
     } catch {
