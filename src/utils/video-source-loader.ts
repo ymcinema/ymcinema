@@ -14,9 +14,9 @@ export async function fetchVideoSources(): Promise<VideoSource[]> {
       name: "Watch Now 1",
       key: "Watch Now 1",
       getMovieUrl: (id) =>
-        `https://embed.vidrift.net/embed/movie/${id}`,
+        `https://embed.vidrift.net/embed/movie/${id}?autoplay=true`,
       getTVUrl: (id, s, e) =>
-        `https://embed.vidrift.net/embed/tv/${id}/${s}/${e}`,
+        `https://embed.vidrift.net/embed/tv/${id}/${s}/${e}?autoplay=true`,
       requiresAuth: false,
     },
     {
@@ -35,6 +35,15 @@ export async function fetchVideoSources(): Promise<VideoSource[]> {
         `https://nxsha.space/embed/movie/${id}?autoplay=true`,
       getTVUrl: (id, s, e) =>
         `https://nxsha.space/embed/tv/${id}/${s}/${e}?autoplay=true`,
+      requiresAuth: false,
+    },
+    {
+      name: "Watch Now 4",
+      key: "Watch Now 4",
+      getMovieUrl: (id) =>
+        `https://vidcore.io/movie/${id}?autoplay=true`,
+      getTVUrl: (id, s, e) =>
+        `https://vidcore.io/tv/${id}/${s}/${e}?autoplay=true`,
       requiresAuth: false,
     },
   ];
