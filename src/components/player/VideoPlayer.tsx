@@ -45,7 +45,7 @@ const VideoPlayerComponent = ({
     };
 
     // Vidrift: sandbox OFF.
-    // Cinezo, NXsha, Vidbolt, Vidlink, and other providers: sandbox ON.
+    // Cinezo, NXsha, and other providers: sandbox ON.
     let useSandbox = true;
 
     try {
