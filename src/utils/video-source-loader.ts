@@ -37,5 +37,14 @@ export async function fetchVideoSources(): Promise<VideoSource[]> {
         `https://nxsha.space/embed/tv/${id}/${s}/${e}?autoplay=true`,
       requiresAuth: false,
     },
+    {
+      name: "Watch Now 4",
+      key: "Watch Now 4",
+      getMovieUrl: (id) =>
+        `https://cinesrc.st/embed/movie/${id}?autoplay=true`,
+      getTVUrl: (id, s, e) =>
+        `https://cinesrc.st/embed/tv/${id}?s=${s}&e=${e}&autoplay=true`,
+      requiresAuth: false,
+    },
   ];
 }
