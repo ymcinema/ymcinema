@@ -14,23 +14,14 @@ export async function fetchVideoSources(): Promise<VideoSource[]> {
       name: "Watch Now 1",
       key: "Watch Now 1",
       getMovieUrl: (id) =>
-        `https://embed.vidrift.net/embed/movie/${id}?autoplay=true`,
-      getTVUrl: (id, s, e) =>
-        `https://embed.vidrift.net/embed/tv/${id}/${s}/${e}?autoplay=true`,
-      requiresAuth: false,
-    },
-    {
-      name: "Watch Now 2",
-      key: "Watch Now 2",
-      getMovieUrl: (id) =>
         `https://player.cinezo.live/embed/movie/${id}?autoplay=true`,
       getTVUrl: (id, s, e) =>
         `https://player.cinezo.live/embed/tv/${id}/${s}/${e}?autoplay=true`,
       requiresAuth: false,
     },
     {
-      name: "Watch Now 3",
-      key: "Watch Now 3",
+      name: "Watch Now 2",
+      key: "Watch Now 2",
       getMovieUrl: (id) =>
         `https://nxsha.space/embed/movie/${id}?autoplay=true`,
       getTVUrl: (id, s, e) =>
@@ -38,12 +29,21 @@ export async function fetchVideoSources(): Promise<VideoSource[]> {
       requiresAuth: false,
     },
     {
-      name: "Watch Now 4",
-      key: "Watch Now 4",
+      name: "Watch Now 3",
+      key: "Watch Now 3",
       getMovieUrl: (id) =>
         `https://cinesrc.st/embed/movie/${id}?autoplay=true`,
       getTVUrl: (id, s, e) =>
         `https://cinesrc.st/embed/tv/${id}?s=${s}&e=${e}&autoplay=true`,
+      requiresAuth: false,
+    },
+    {
+      name: "Watch Now 4",
+      key: "Watch Now 4",
+      getMovieUrl: (id) =>
+        `https://embed.vidrift.net/embed/movie/${id}?autoplay=true`,
+      getTVUrl: (id, s, e) =>
+        `https://embed.vidrift.net/embed/tv/${id}/${s}/${e}?autoplay=true`,
       requiresAuth: false,
     },
   ];
