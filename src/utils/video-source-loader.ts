@@ -46,5 +46,14 @@ export async function fetchVideoSources(): Promise<VideoSource[]> {
         `https://embed.vidrift.net/embed/tv/${id}/${s}/${e}?autoplay=true`,
       requiresAuth: false,
     },
+    {
+      name: "Watch Now 5",
+      key: "Watch Now 5",
+      getMovieUrl: (id) =>
+        `https://cinemaos.tech/watch/movie/${id}?autoplay=true`,
+      getTVUrl: (id, s, e) =>
+        `https://cinemaos.tech/watch/tv/${id}?season=${s}&episode=${e}&autoplay=true`,
+      requiresAuth: false,
+    },
   ];
 }
