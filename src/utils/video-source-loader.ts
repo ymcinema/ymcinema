@@ -37,5 +37,23 @@ export async function fetchVideoSources(): Promise<VideoSource[]> {
         `https://nxsha.space/embed/tv/${id}/${s}/${e}?autoplay=true`,
       requiresAuth: false,
     },
+    {
+      name: "Watch Now 4",
+      key: "Watch Now 4",
+      getMovieUrl: (id) =>
+        `https://vidbolt.xyz/movie/${id}?autoplay=true`,
+      getTVUrl: (id, s, e) =>
+        `https://vidbolt.xyz/tv/${id}/${s}/${e}?autoplay=true`,
+      requiresAuth: false,
+    },
+    {
+      name: "Watch Now 5",
+      key: "Watch Now 5",
+      getMovieUrl: (id) =>
+        `https://vidlink.pro/movie/${id}?autoplay=true`,
+      getTVUrl: (id, s, e) =>
+        `https://vidlink.pro/tv/${id}/${s}/${e}?autoplay=true`,
+      requiresAuth: false,
+    },
   ];
 }
