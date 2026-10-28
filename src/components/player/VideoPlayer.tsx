@@ -44,8 +44,8 @@ const VideoPlayerComponent = ({
       onLoaded();
     };
 
+    // Cinezo, NXsha, Cinesrc: sandbox ON.
     // Vidrift: sandbox OFF.
-    // Cinezo, NXsha, Cinesrc, CinemaOS, and other providers: sandbox ON.
     let useSandbox = true;
 
     try {
@@ -117,7 +117,7 @@ const VideoPlayerComponent = ({
           className="absolute inset-0 flex items-center justify-center bg-black/60"
         >
           <div className="h-16 w-16 animate-spin rounded-full border-4 border-white/30 border-t-white" />
-        </div>
+        </m.div>
       ) : null}
 
       <m.div
