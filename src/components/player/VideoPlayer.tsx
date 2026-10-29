@@ -1,7 +1,7 @@
 
 import { m } from "framer-motion";
 import { useRef, useMemo, memo, lazy, Suspense } from "react";
-import type { LabeledStreamLink } from "@/utils/types";
+import { LabeledStreamLink } from "@/utils/types";
 
 const EMPTY_STREAM_LINKS: LabeledStreamLink[] = [];
 
@@ -35,30 +35,27 @@ const VideoPlayerComponent = ({
   const iframeRef = useRef<HTMLIFrameElement>(null);
 
   const iframeElement = useMemo(() => {
-    const onIframeLoad = () => {
-      if (iframeUrl) {
-        onLoaded();
-      }
-    };
-
     const onIframeError = () => {
       onError("Failed to load iframe content");
     };
 
-    let iframeProps: { sandbox?: string } = {
-      sandbox: "allow-scripts allow-same-origin allow-presentation",
+    const onIframeLoad = () => {
+      if (!iframeUrl) return;
+      onLoaded();
     };
+
+    // Cinezo, NXsha, Cinesrc: sandbox ON.
+    // Vidrift: sandbox OFF.
+    let useSandbox = true;
 
     try {
       const hostname = new URL(iframeUrl).hostname.toLowerCase();
 
-      // Vidrift: sandbox OFF.
-      // Cinezo, NXsha, Cinesrc, VAPlayer, and other providers: sandbox ON.
       if (hostname === "embed.vidrift.net") {
-        iframeProps = {};
+        useSandbox = false;
       }
     } catch {
-      // Keep sandbox enabled if the URL is invalid.
+      useSandbox = true;
     }
 
     return (
@@ -67,9 +64,14 @@ const VideoPlayerComponent = ({
         ref={iframeRef}
         src={iframeUrl}
         title={title}
-        className="h-full w-full border-0"
+        className="h-full w-full"
         allowFullScreen
-        {...iframeProps}
+        {...(useSandbox
+          ? {
+              sandbox:
+                "allow-scripts allow-same-origin allow-presentation",
+            }
+          : {})}
         allow="autoplay; encrypted-media; picture-in-picture"
         referrerPolicy="no-referrer"
         loading="lazy"
@@ -79,6 +81,7 @@ const VideoPlayerComponent = ({
     );
   }, [iframeUrl, onError, onLoaded, title]);
 
+  // Video.js player for API sources
   if (isApiSource) {
     return (
       <div className="relative aspect-video overflow-hidden rounded-lg shadow-2xl">
@@ -103,13 +106,19 @@ const VideoPlayerComponent = ({
     );
   }
 
+  // Standard iframe player
   return (
     <div className="relative aspect-video overflow-hidden rounded-lg shadow-2xl">
-      {isLoading && (
-        <div className="absolute inset-0 z-10 flex items-center justify-center bg-black/60">
+      {isLoading ? (
+        <m.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          className="absolute inset-0 flex items-center justify-center bg-black/60"
+        >
           <div className="h-16 w-16 animate-spin rounded-full border-4 border-white/30 border-t-white" />
-        </div>
-      )}
+        </m.div>
+      ) : null}
 
       <m.div
         initial={{ opacity: 0, scale: 0.95 }}
@@ -129,15 +138,11 @@ const VideoPlayer = memo(VideoPlayerComponent, (prevProps, nextProps) => {
     prevProps.isLoading === nextProps.isLoading &&
     prevProps.title === nextProps.title &&
     prevProps.poster === nextProps.poster &&
-    prevProps.onLoaded === nextProps.onLoaded &&
-    prevProps.onError === nextProps.onError &&
     prevProps.isApiSource === nextProps.isApiSource &&
     prevProps.streamLinks === nextProps.streamLinks &&
     prevProps.apiLoading === nextProps.apiLoading &&
     prevProps.apiError === nextProps.apiError
   );
 });
-
-VideoPlayer.displayName = "VideoPlayer";
 
 export { VideoPlayer };
