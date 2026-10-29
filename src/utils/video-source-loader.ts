@@ -10,58 +10,40 @@ export interface VideoSource {
 
 export async function fetchVideoSources(): Promise<VideoSource[]> {
   return [
-    // 1. Cinezo
     {
       name: "Watch Now 1",
       key: "Watch Now 1",
       getMovieUrl: (id) =>
         `https://player.cinezo.live/embed/movie/${id}?autoplay=true`,
-      getTVUrl: (id, season, episode) =>
-        `https://player.cinezo.live/embed/tv/${id}/${season}/${episode}?autoplay=true`,
+      getTVUrl: (id, s, e) =>
+        `https://player.cinezo.live/embed/tv/${id}/${s}/${e}?autoplay=true`,
       requiresAuth: false,
     },
-
-    // 2. NXsha
     {
       name: "Watch Now 2",
       key: "Watch Now 2",
       getMovieUrl: (id) =>
         `https://nxsha.space/embed/movie/${id}?autoplay=true`,
-      getTVUrl: (id, season, episode) =>
-        `https://nxsha.space/embed/tv/${id}/${season}/${episode}?autoplay=true`,
+      getTVUrl: (id, s, e) =>
+        `https://nxsha.space/embed/tv/${id}/${s}/${e}?autoplay=true`,
       requiresAuth: false,
     },
-
-    // 3. Cinesrc
     {
       name: "Watch Now 3",
       key: "Watch Now 3",
       getMovieUrl: (id) =>
         `https://cinesrc.st/embed/movie/${id}?autoplay=true`,
-      getTVUrl: (id, season, episode) =>
-        `https://cinesrc.st/embed/tv/${id}?s=${season}&e=${episode}&autoplay=true`,
+      getTVUrl: (id, s, e) =>
+        `https://cinesrc.st/embed/tv/${id}?s=${s}&e=${e}&autoplay=true`,
       requiresAuth: false,
     },
-
-    // 4. Vidrift
     {
       name: "Watch Now 4",
       key: "Watch Now 4",
       getMovieUrl: (id) =>
         `https://embed.vidrift.net/embed/movie/${id}?autoplay=true`,
-      getTVUrl: (id, season, episode) =>
-        `https://embed.vidrift.net/embed/tv/${id}/${season}/${episode}?autoplay=true`,
-      requiresAuth: false,
-    },
-
-    // 5. CinemaOS
-    {
-      name: "Watch Now 5",
-      key: "Watch Now 5",
-      getMovieUrl: (id) =>
-        `https://cinemaos.tech/player/${id}`,
-      getTVUrl: (id, season, episode) =>
-        `https://cinemaos.tech/player/${id}?season=${season}&episode=${episode}`,
+      getTVUrl: (id, s, e) =>
+        `https://embed.vidrift.net/embed/tv/${id}/${s}/${e}?autoplay=true`,
       requiresAuth: false,
     },
   ];
