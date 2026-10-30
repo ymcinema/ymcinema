@@ -10,10 +10,21 @@ export interface VideoSource {
 
 export async function fetchVideoSources(): Promise<VideoSource[]> {
   return [
-    // 1. Cinezo
+    // 1. Cinevu
     {
       name: "Watch Now 1",
       key: "Watch Now 1",
+      getMovieUrl: (id) =>
+        `https://cinevu.icu/player.html?type=movie&id=${id}`,
+      getTVUrl: (id, season, episode) =>
+        `https://embed.cinevu.icu/embed/tv/${id}/${season}/${episode}`,
+      requiresAuth: false,
+    },
+
+    // 2. Cinezo
+    {
+      name: "Watch Now 2",
+      key: "Watch Now 2",
       getMovieUrl: (id) =>
         `https://player.cinezo.live/embed/movie/${id}?autoplay=true`,
       getTVUrl: (id, season, episode) =>
@@ -21,10 +32,10 @@ export async function fetchVideoSources(): Promise<VideoSource[]> {
       requiresAuth: false,
     },
 
-    // 2. Vidzen
+    // 3. Vidzen
     {
-      name: "Watch Now 2",
-      key: "Watch Now 2",
+      name: "Watch Now 3",
+      key: "Watch Now 3",
       getMovieUrl: (id) =>
         `https://vidzen.fun/movie/${id}?autoPlay=true`,
       getTVUrl: (id, season, episode) =>
@@ -32,10 +43,10 @@ export async function fetchVideoSources(): Promise<VideoSource[]> {
       requiresAuth: false,
     },
 
-    // 3. NXsha
+    // 4. NXsha
     {
-      name: "Watch Now 3",
-      key: "Watch Now 3",
+      name: "Watch Now 4",
+      key: "Watch Now 4",
       getMovieUrl: (id) =>
         `https://nxsha.space/embed/movie/${id}?autoplay=true`,
       getTVUrl: (id, season, episode) =>
@@ -43,10 +54,10 @@ export async function fetchVideoSources(): Promise<VideoSource[]> {
       requiresAuth: false,
     },
 
-    // 4. Cinesrc
+    // 5. Cinesrc
     {
-      name: "Watch Now 4",
-      key: "Watch Now 4",
+      name: "Watch Now 5",
+      key: "Watch Now 5",
       getMovieUrl: (id) =>
         `https://cinesrc.st/embed/movie/${id}?autoplay=true`,
       getTVUrl: (id, season, episode) =>
@@ -54,10 +65,10 @@ export async function fetchVideoSources(): Promise<VideoSource[]> {
       requiresAuth: false,
     },
 
-    // 5. Vidrift
+    // 6. Vidrift
     {
-      name: "Watch Now 5",
-      key: "Watch Now 5",
+      name: "Watch Now 6",
+      key: "Watch Now 6",
       getMovieUrl: (id) =>
         `https://embed.vidrift.net/embed/movie/${id}?autoplay=true`,
       getTVUrl: (id, season, episode) =>
@@ -65,25 +76,14 @@ export async function fetchVideoSources(): Promise<VideoSource[]> {
       requiresAuth: false,
     },
 
-    // 6. Rivestream
-    {
-      name: "Watch Now 6",
-      key: "Watch Now 6",
-      getMovieUrl: (id) =>
-        `https://rivestream.ru/watch?type=movie&id=${id}&autoplay=true`,
-      getTVUrl: (id, season, episode) =>
-        `https://rivestream.ru/watch?type=tv&id=${id}&season=${season}&episode=${episode}&autoplay=true`,
-      requiresAuth: false,
-    },
-
-    // 7. Cinevu
+    // 7. Rivestream
     {
       name: "Watch Now 7",
       key: "Watch Now 7",
       getMovieUrl: (id) =>
-        `https://cinevu.icu/player.html?type=movie&id=${id}`,
+        `https://rivestream.ru/watch?type=movie&id=${id}&autoplay=true`,
       getTVUrl: (id, season, episode) =>
-        `https://embed.cinevu.icu/embed/tv/${id}/${season}/${episode}`,
+        `https://rivestream.ru/watch?type=tv&id=${id}&season=${season}&episode=${episode}&autoplay=true`,
       requiresAuth: false,
     },
   ];
