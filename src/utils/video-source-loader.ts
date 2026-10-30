@@ -64,5 +64,16 @@ export async function fetchVideoSources(): Promise<VideoSource[]> {
         `https://embed.vidrift.net/embed/tv/${id}/${season}/${episode}?autoplay=true`,
       requiresAuth: false,
     },
+
+    // 6. Rivestream
+    {
+      name: "Watch Now 6",
+      key: "Watch Now 6",
+      getMovieUrl: (id) =>
+        `https://rivestream.ru/watch?type=movie&id=${id}&autoplay=true`,
+      getTVUrl: (id, season, episode) =>
+        `https://rivestream.ru/watch?type=tv&id=${id}&season=${season}&episode=${episode}&autoplay=true`,
+      requiresAuth: false,
+    },
   ];
 }
