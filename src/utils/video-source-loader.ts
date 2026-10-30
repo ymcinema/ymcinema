@@ -1,3 +1,4 @@
+
 export interface VideoSource {
   name: string;
   key: string;
@@ -53,14 +54,14 @@ export async function fetchVideoSources(): Promise<VideoSource[]> {
       requiresAuth: false,
     },
 
-    // 5. Mapple
+    // 5. Vidstorm
     {
       name: "Watch Now 5",
       key: "Watch Now 5",
       getMovieUrl: (id) =>
-        `https://mapple.fun/watch/movie/${id}?autoplay=true`,
+        `https://vidstorm.to/movie/${id}?autoplay=true`,
       getTVUrl: (id, season, episode) =>
-        `https://mapple.fun/watch/tv/${id}?season=${season}&episode=${episode}&autoplay=true`,
+        `https://vidstorm.to/tv/${id}?season=${season}&episode=${episode}&autoplay=true`,
       requiresAuth: false,
     },
   ];

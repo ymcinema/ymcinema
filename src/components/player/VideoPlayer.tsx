@@ -44,14 +44,18 @@ const VideoPlayerComponent = ({
       onLoaded();
     };
 
-    // Cinezo, NXsha, Cinesrc, Mapple: sandbox ON.
-    // Vidrift: sandbox OFF.
+    // Cinezo, NXsha, Cinesrc: sandbox ON.
+    // Vidrift, Vidstorm: sandbox OFF.
     let useSandbox = true;
 
     try {
       const hostname = new URL(iframeUrl).hostname.toLowerCase();
 
-      if (hostname === "embed.vidrift.net") {
+      if (
+        hostname === "embed.vidrift.net" ||
+        hostname === "vidstorm.to" ||
+        hostname.endsWith(".vidstorm.to")
+      ) {
         useSandbox = false;
       }
     } catch {
