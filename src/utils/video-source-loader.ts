@@ -53,5 +53,16 @@ export async function fetchVideoSources(): Promise<VideoSource[]> {
         `https://embed.vidrift.net/embed/tv/${id}/${season}/${episode}?autoplay=true`,
       requiresAuth: false,
     },
+
+    // 5. Vidzen
+    {
+      name: "Watch Now 5",
+      key: "Watch Now 5",
+      getMovieUrl: (id) =>
+        `https://vidzen.fun/movie/${id}?autoPlay=true`,
+      getTVUrl: (id, season, episode) =>
+        `https://vidzen.fun/tv/${id}?season=${season}&episode=${episode}&autoPlay=true`,
+      requiresAuth: false,
+    },
   ];
 }
