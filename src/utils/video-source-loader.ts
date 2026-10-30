@@ -75,5 +75,16 @@ export async function fetchVideoSources(): Promise<VideoSource[]> {
         `https://rivestream.ru/watch?type=tv&id=${id}&season=${season}&episode=${episode}&autoplay=true`,
       requiresAuth: false,
     },
+
+    // 7. Cinevu
+    {
+      name: "Watch Now 7",
+      key: "Watch Now 7",
+      getMovieUrl: (id) =>
+        `https://cinevu.icu/player.html?type=movie&id=${id}`,
+      getTVUrl: (id, season, episode) =>
+        `https://embed.cinevu.icu/embed/tv/${id}/${season}/${episode}`,
+      requiresAuth: false,
+    },
   ];
 }
