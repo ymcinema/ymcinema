@@ -44,7 +44,7 @@ const VideoPlayerComponent = ({
       onLoaded();
     };
 
-    // Cinezo, NXsha, Cinesrc, Vidzen: sandbox ON.
+    // Cinezo, Vidzen, NXsha, Cinesrc: sandbox ON.
     // Vidrift: sandbox OFF.
     let useSandbox = true;
 

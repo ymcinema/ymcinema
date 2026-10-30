@@ -21,10 +21,21 @@ export async function fetchVideoSources(): Promise<VideoSource[]> {
       requiresAuth: false,
     },
 
-    // 2. NXsha
+    // 2. Vidzen
     {
       name: "Watch Now 2",
       key: "Watch Now 2",
+      getMovieUrl: (id) =>
+        `https://vidzen.fun/movie/${id}?autoPlay=true`,
+      getTVUrl: (id, season, episode) =>
+        `https://vidzen.fun/tv/${id}?season=${season}&episode=${episode}&autoPlay=true`,
+      requiresAuth: false,
+    },
+
+    // 3. NXsha
+    {
+      name: "Watch Now 3",
+      key: "Watch Now 3",
       getMovieUrl: (id) =>
         `https://nxsha.space/embed/movie/${id}?autoplay=true`,
       getTVUrl: (id, season, episode) =>
@@ -32,10 +43,10 @@ export async function fetchVideoSources(): Promise<VideoSource[]> {
       requiresAuth: false,
     },
 
-    // 3. Cinesrc
+    // 4. Cinesrc
     {
-      name: "Watch Now 3",
-      key: "Watch Now 3",
+      name: "Watch Now 4",
+      key: "Watch Now 4",
       getMovieUrl: (id) =>
         `https://cinesrc.st/embed/movie/${id}?autoplay=true`,
       getTVUrl: (id, season, episode) =>
@@ -43,25 +54,14 @@ export async function fetchVideoSources(): Promise<VideoSource[]> {
       requiresAuth: false,
     },
 
-    // 4. Vidrift
-    {
-      name: "Watch Now 4",
-      key: "Watch Now 4",
-      getMovieUrl: (id) =>
-        `https://embed.vidrift.net/embed/movie/${id}?autoplay=true`,
-      getTVUrl: (id, season, episode) =>
-        `https://embed.vidrift.net/embed/tv/${id}/${season}/${episode}?autoplay=true`,
-      requiresAuth: false,
-    },
-
-    // 5. Vidzen
+    // 5. Vidrift
     {
       name: "Watch Now 5",
       key: "Watch Now 5",
       getMovieUrl: (id) =>
-        `https://vidzen.fun/movie/${id}?autoPlay=true`,
+        `https://embed.vidrift.net/embed/movie/${id}?autoplay=true`,
       getTVUrl: (id, season, episode) =>
-        `https://vidzen.fun/tv/${id}?season=${season}&episode=${episode}&autoPlay=true`,
+        `https://embed.vidrift.net/embed/tv/${id}/${season}/${episode}?autoplay=true`,
       requiresAuth: false,
     },
   ];
